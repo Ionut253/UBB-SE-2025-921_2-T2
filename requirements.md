@@ -164,3 +164,78 @@ The **Portfolio** contains the following **UI Elements**, displayed **vertically
 					- All applied style is not required by the requirement but welcome.  
 				- **Button** displaying the text **"Open"**.
 					- **On Click** the button will request from the **global service** *page change* to the **Stock Menu** for the **stock** in cause.
+
+# Alert System *- Norbert*
+
+## Definitions and Short Description  
+**Alert System**: A feature, responsible for managing user-defined alerts for the stock prices    
+**Alert**: A user-defined trigger, which monitors the stock price changes and alerts/notifies the user when conditions are met.   
+**Database Wrapper**: Handles persistent storage and retrieval of alerts  
+**Global Service**: It has a role in integration and communication of the alerts with the backend services
+
+## UI Elements
+The **application** will have the following elements related to the **Alert System**:
+- **Alert Button**
+    - Displays on stock items, in the **Stock Page**
+    - Clicking on it, opens up the **Alert Window**
+- **Alert Window**
+    - Popup modal, where the users have the ability to set up an alert relating to the **stock price**.
+    - Elements:
+        - Text Input for **"Up to" Price** (optional)
+        - Text Input for **"Up to" Price** (optional)
+        - **Save Alert** Button to create the alert
+        - **Cancel** Button to close window without any modifications or saving
+- **Stock Page Indicator**
+    - A bell icon; displayed next to stocks with active alerts
+    - Clicking on the bell opens up the **Alert Management Window**
+- **Alert Management Window**
+    - Displays all alerts currently **active** for the **specific stock**
+    - User can **update / delete / deactivate** alerts
+    - Elements:
+        - **Edit** Button, opens the field to modify price range
+        - **Delete** Button, removes the alert
+        - **Deactivate** Button, disables the alert, without deleting it
+- **Notification System**
+    - Using **WinUI 3** notifications, alerts the user when the **set condition** is met for the alert
+    - Display message:
+        - Stock symbol and name
+        - Whether it's **"Up To"** | **"Down To"**
+        - Current stock price (at the time of trigger)
+
+## Alert Data Model  
+The **Alert System** is represented with the following model and properties:
+
+- **StockSymbol (string)**: identifies the alert with the stock associated with its symbol
+- **AlertUpToPrice (decimal/double, nullable)**: upper price threshold; null if no upper limit is set
+- **AlertDownToPrice (decimal/double, nullable)**: lower price threshold; null if no lower limit is set  
+- **IsActive (boolean)**: indicates if an alert is active; on init it's set to `true`
+- **HasBeenTriggered (boolean)**: indicates whether the alert has been triggered; on init it's set to `false` 
+- **AlertId (GUID)**: identifier for each alert instance
+
+## Alert Creation and Management  
+The **Alert System** allows users to create and manage alerts, communicates using the **AlertsViewModel**, handling the UI interactions
+
+### Alert Creation Logic  
+- The user clicks on the **Alert Button** on the stock item and it opens up the **Alert Window**
+- Inside there, clicking on the **Save Alert** button, the system will:
+    - get user-entered **"Up to"** and **"Down to"** values
+    - validate the input (non-empty values are valid numbers and in correct range)
+    - create a new **Alert** instance, populating it with the correct stock symbol and price thresholds  
+    - set `IsActive = true` and `HasBeenTriggered = false` (default)  
+    - store the alert 
+
+### Alert Storage & Retrieval (Database Wrapper)  
+The **Database Wrapper** will manage persistence for alerts. It provides methods for:
+- **SaveAlert(Alert alert)**: storing a new alert  
+- **GetAlertsForStock(string stockSymbol)**: retrieves all alerts for the given stock symbol
+- **GetAllActiveAlerts()**: retrieves all active alerts for monitoring 
+- **UpdateAlert(Alert alert)**: updates existign alert
+- **DeleteAlert(Guid alertId)**: delete alert from the database using it's unique ID
+
+### Monitoring Logic  
+- Using the **heart-beat**/s aspect of the **Global Service**, it periodically syncs to fetch stock prices 
+- For each **active alert**, checks if:
+    - **AlertUpToPrice** is set and the current stock price meets / exceeds it  
+    - **AlertDownToPrice** is set and the current stock price meets / falls below it  
+    - if triggered, sets `HasBeenTriggered = true`, sends a notification, and updates the database  
+
