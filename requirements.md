@@ -42,21 +42,7 @@ The **application** will have the following **NON-UI Elements** (with additional
 # Navbar *- Ionut*
 A side-bar navigation menu enabling navigation between pages. Present on the left side of all **UI Pages** except the **Stock Page** and the **Alert Window**.    
 The navbar will have the following **UI Elements**, displayed **vertically** from top to bottom in the following order:
-- **Container - Wallet:**
-	- All applied style is not required by the requirement but welcome. 
-	- Horizontally spanning the whole navbar width. **(FILL)** 
-	- Vertically spanning the height of the content. **(FIT)**
-	- **Children** are alligned **vertically**.
-	- Contains the following **UI Elements**:
-		- **Text Label** displaying the user's **username**
-			- All applied style is not required by the requirement but welcome.
-		- **Text Label** displaying the text **"Gems: "**, followed by the amount of **gems** the user currently posseses.
-			- **Gem Green** colored Text (any shade).
-			- Other applied style is not required by the requirement but welcome.
-			- The text should refresh every time the amount of gems the user possesses changes to reflect the new value.
-		- **Text Label** displaying the text **"Stocks (as Gems): "** followed by the current *'market value'* of all the stocks possesed by the user.
-			- All applied style is not required by the requirement but welcome.
-			- The value should be re-calculated every **heart-beat** with the new data provided by the **Global Service** and refreshed in the ui to reflect the new value.
+
 - **Button** displaying the text **"Portfolio"**.
 	- Horizontally spanning the whole navbar width. **(FILL)** 
 	- Vertically spanning the height of the content. **(FIT)**
@@ -81,6 +67,23 @@ The navbar will have the following **UI Elements**, displayed **vertically** fro
 	- If the **current page** is the one indicated by the button, the background color of the button should be **Gem Green**.
 	- Other applied style is not required by the requirement but welcome.
 	- When clicked request from **global service** *page change* to the **Gem Store** page.
+ - **Container - Wallet:**
+	- All applied style is not required by the requirement but welcome. 
+	- Horizontally spanning the whole navbar width. **(FILL)** 
+	- Vertically spanning the height of the content. **(FIT)**
+	- **Children** are alligned **vertically**.
+	- Contains the following **UI Elements**:
+		- - **Text Label** displaying the text **"Wallet"**
+			- All applied style is not required by the requirement but welcome.
+		- **Text Label** displaying the text **"Gems: "**, followed by the amount of **gems** the user currently posseses.
+			- **Gem Green** colored Text (any shade).
+			- Other applied style is not required by the requirement but welcome.
+			- The text should refresh every time the amount of gems the user possesses changes to reflect the new value.
+		- **Text Label** displaying the text **"Stocks (as Gems): "** followed by the current *'market value'* of all the stocks possesed by the user.
+			- All applied style is not required by the requirement but welcome.
+			- The value should be re-calculated every **heart-beat** with the new data provided by the **Global Service** and refreshed in the ui to reflect the new value.
+     		- **Text Label** displaying the user's **username**
+			- All applied style is not required by the requirement but welcome.
 
  # Portfolio *- Bianca*
 The **Portfolio** shows information related to the current value of all stocks possessed by the user, alongside a list of those stocks.  
