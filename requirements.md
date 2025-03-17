@@ -4,7 +4,9 @@
 **Other Application/s**: The part of the **global application** other teams work on.  
 **Gem Green**: `#99d447` *(hex)*  
 **Financial-Hell Red**: `#f54c36` *(hex)*  
+**Electron-Swing Yellow**: `#ffba3b` *(hex)*  
 **Children**: Nested **UI Elements**.  
+**Tag**: Reference to another paragraph in the same local scope.  
   
 The **application** will have the following **UI Elements** (with additional information and short description):
 - **Navbar**:
@@ -167,3 +169,77 @@ The **Portfolio** contains the following **UI Elements**, displayed **vertically
 					- All applied style is not required by the requirement but welcome.  
 				- **Button** displaying the text **"Open"**.
 					- **On Click** the button will request from the **global service** *page change* to the **Stock Menu** for the **stock** in cause.
+
+# Stock List *- Riccardo*
+The **Stock List** displays a list of all available stocks received from the **global service**.  
+The **Portfolio** contains the following **UI Elements**, displayed **vertically** from **top** to **bottom** in the following order:
+- **Container - Controlls**: 
+	- All applied style is not required by the requirement but welcome. 
+	- Horizontally spanning the whole available width. **(FILL)** 
+	- Vertically spanning the height of the content. **(FIT)**
+	- **Children** are alligned **horizontally** from **left** to **right**.
+	- Contains the following **UI Elements**:
+		- **Text Input** *(text box)* | defined as **tag: search-input** | displaying the placeholder text **"Stock Symbol or Name"**.
+			-  All applied style is not required by the requirement but welcome. 
+			- Horizontally spanning the whole available width. **(FILL)**
+		- **Button** displaying the text **"Search!"**.
+			- All applied style is not required by the requirement but welcome.
+			- **On Click** the application shall filter all **stock lists** *(favorite and other | see below)*, only keeping entries that contain the **case-insensitive** text inserted in the text input *(tag: search-input)*. If the input *(tag: search-input)* is empty, **all available stocks** shall be listed. The change shall be immediately reflected in the two lists.
+		- **Text Label** displaying the text **"Sort By"**.
+			- All applied style is not required by the requirement but welcome.
+		- **Drop-Down Menu** | defined as **tag: order-input* | a dropdown menu for sorting options.
+			-  All applied style is not required by the requirement but welcome. 
+			- Displaying the following options:
+				- **Name**: stock name. - *default*
+				- **Price**: stock price.
+				- **Percentage** stock gain/loss percentage ratio between the last 2 **heart-beats**.
+			- When an option is selected in the menu, the change shall be **instantly reflected** in all **stock lists** *(favorite and other | see below)*.
+- **Container - Lists**:
+	- All applied style is not required by the requirement but welcome. 
+	- Horizontally spanning the whole available width. **(FILL)** 
+	- Vertically spanning the whole available height. **(FILL)**
+	- **Scrollable**
+	- **Children** are alligned **vertically** from **top** to **bottom**.
+	- Contains the following **UI Elements**: 
+		- **Container - Favorite**: a list displaying the favorite stocks.
+			- **Background Color**: **Electro-Swing Yellow** *// its 2 AM :C , i.m out of names*
+			- Other applied style is not required by the requirement but welcome. 
+			- Horizontally spanning the whole available width. **(FILL)** 
+			- Vertically spanning the height of the content. **(FIT)**
+			- **Children** are alligned **vertically** from **top** to **bottom**.
+			- Contains the following **UI Elements**: 
+				- All **stocks** *(tag: stock)*  received from the **global service** that are found the favorite list received from the **global service** and pass the search requirements *(tag: search-input)* ordered by requirements *(tag: order-input)*.
+			- The list is regenerated each **heart-beat** or if requested via search, filter *(tag: search-input, tag: order-input)* or by other events.
+		- **Container - NoN-Favorite**: a list displaying the remaining stocks (that are not favorite).
+			- All applied style is not required by the requirement but welcome. 
+			- Horizontally spanning the whole available width. **(FILL)** 
+			- Vertically spanning the height of the content. **(FIT)**
+			- **Children** are alligned **vertically** from **top** to **bottom**.
+			- Contains the following **UI Elements**: 
+				- All **stocks** *(tag: stock)* received from the **global service** that are not found the favorite list received from the **global service** and pass the search requirements *(tag: search-input)* ordered by requirements *(tag: order-input)*.
+			- The list is regenerated each **heart-beat** or if requested via search, filter *(tag: search-input, tag: order-input)* or by other events.
+> *Define* **tag: stock** as:
+- **Container - Stock**: *generated with a stock model (symbol, name, price, percentage)*
+	- All applied style is not required by the requirement but welcome. 
+	- Horizontally spanning the whole available width. **(FILL)** 
+	- Vertically spanning the height of the content. **(FIT)**
+	- **Children** are alligned **horizontally** from **left** to **right**.
+	- Contains the following **UI Elements**: 
+		- **Text Label** displaying the **Symbol** of the stock.
+			- All applied style is not required by the requirement but welcome. 
+		- **Text Label** displaying the **Name** of the stock.
+			- All applied style is not required by the requirement but welcome. 
+		- ** Text Label** displaying the **Price** of the stock followed by the text **" Gems"**.
+			- All applied style is not required by the requirement but welcome. 
+		- **Text Label** displaying the **Percentage** of the stock.
+			- The percentage ratio between the stock price of the last two **heart-beats** *(defined as value)*.
+			- If the value is **greater or equal to 0**, the color of the text should be **Gem Green**, otherwise, the color should be **Financial-Hell Red**.
+			- Other applied style is not required by the requirement but welcome. 
+		- **Image** displaying:
+			- format: `png`, size: `32x32px`
+			- If the stock is listed in the favorite list provided by the **global service**:
+				- Displaying a **Filled Star Shape** in the color **Electro-Swing Yellow**.
+				- **On click** the stock is removed from the **favorite list** and both list containers described above are regenerated. The new **favorite list** is also forwarded to the **global service** to be processed and saved.
+			- Otherwise:
+				- Displaying a **Star Outline** in the color **Electro-Swing Yellow**.
+				- **On click** the stock is added to the **favorite list** and both list containers described above are regenerated. The new **favorite list** is also forwarded to the **global service** to be processed and saved.
