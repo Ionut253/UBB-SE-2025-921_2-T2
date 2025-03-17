@@ -4,7 +4,9 @@
 **Other Application/s**: The part of the **global application** other teams work on.  
 **Gem Green**: `#99d447` *(hex)*  
 **Financial-Hell Red**: `#f54c36` *(hex)*  
+**Electron-Swing Yellow**: `#ffba3b` *(hex)*  
 **Children**: Nested **UI Elements**.  
+**Tag**: Reference to another paragraph in the same local scope.  
   
 The **application** will have the following **UI Elements** (with additional information and short description):
 - **Navbar**:
@@ -42,21 +44,7 @@ The **application** will have the following **NON-UI Elements** (with additional
 # Navbar *- Ionut*
 A side-bar navigation menu enabling navigation between pages. Present on the left side of all **UI Pages** except the **Stock Page** and the **Alert Window**.    
 The navbar will have the following **UI Elements**, displayed **vertically** from top to bottom in the following order:
-- **Container - Wallet:**
-	- All applied style is not required by the requirement but welcome. 
-	- Horizontally spanning the whole navbar width. **(FILL)** 
-	- Vertically spanning the height of the content. **(FIT)**
-	- **Children** are alligned **vertically**.
-	- Contains the following **UI Elements**:
-		- **Text Label** displaying the user's **username**
-			- All applied style is not required by the requirement but welcome.
-		- **Text Label** displaying the text **"Gems: "**, followed by the amount of **gems** the user currently posseses.
-			- **Gem Green** colored Text (any shade).
-			- Other applied style is not required by the requirement but welcome.
-			- The text should refresh every time the amount of gems the user possesses changes to reflect the new value.
-		- **Text Label** displaying the text **"Stocks (as Gems): "** followed by the current *'market value'* of all the stocks possesed by the user.
-			- All applied style is not required by the requirement but welcome.
-			- The value should be re-calculated every **heart-beat** with the new data provided by the **Global Service** and refreshed in the ui to reflect the new value.
+
 - **Button** displaying the text **"Portfolio"**.
 	- Horizontally spanning the whole navbar width. **(FILL)** 
 	- Vertically spanning the height of the content. **(FIT)**
@@ -81,8 +69,25 @@ The navbar will have the following **UI Elements**, displayed **vertically** fro
 	- If the **current page** is the one indicated by the button, the background color of the button should be **Gem Green**.
 	- Other applied style is not required by the requirement but welcome.
 	- When clicked request from **global service** *page change* to the **Gem Store** page.
+ - **Container - Wallet:**
+	- All applied style is not required by the requirement but welcome. 
+	- Horizontally spanning the whole navbar width. **(FILL)** 
+	- Vertically spanning the height of the content. **(FIT)**
+	- **Children** are alligned **vertically**.
+	- Contains the following **UI Elements**:
+		- - **Text Label** displaying the text **"Wallet"**
+			- All applied style is not required by the requirement but welcome.
+		- **Text Label** displaying the text **"Gems: "**, followed by the amount of **gems** the user currently posseses.
+			- **Gem Green** colored Text (any shade).
+			- Other applied style is not required by the requirement but welcome.
+			- The text should refresh every time the amount of gems the user possesses changes to reflect the new value.
+		- **Text Label** displaying the text **"Stocks (as Gems): "** followed by the current *'market value'* of all the stocks possesed by the user.
+			- All applied style is not required by the requirement but welcome.
+			- The value should be re-calculated every **heart-beat** with the new data provided by the **Global Service** and refreshed in the ui to reflect the new value.
+     		- **Text Label** displaying the user's **username**
+			- All applied style is not required by the requirement but welcome.
 
- # Portfolio *- Bianca*
+# Portfolio *- Bianca*
 The **Portfolio** shows information related to the current value of all stocks possessed by the user, alongside a list of those stocks.  
 The **Portfolio** contains the following **UI Elements**, displayed **vertically** from top to bottom in the following order:
 - **Container - Top Bar**: 
@@ -164,78 +169,315 @@ The **Portfolio** contains the following **UI Elements**, displayed **vertically
 					- All applied style is not required by the requirement but welcome.  
 				- **Button** displaying the text **"Open"**.
 					- **On Click** the button will request from the **global service** *page change* to the **Stock Menu** for the **stock** in cause.
+  
+# Stock List *- Riccardo*
+The **Stock List** displays a list of all available stocks received from the **global service**.  
+The **Portfolio** contains the following **UI Elements**, displayed **vertically** from **top** to **bottom** in the following order:
+- **Container - Controlls**: 
+	- All applied style is not required by the requirement but welcome. 
+	- Horizontally spanning the whole available width. **(FILL)** 
+	- Vertically spanning the height of the content. **(FIT)**
+	- **Children** are alligned **horizontally** from **left** to **right**.
+	- Contains the following **UI Elements**:
+		- **Text Input** *(text box)* | defined as **tag: search-input** | displaying the placeholder text **"Stock Symbol or Name"**.
+			-  All applied style is not required by the requirement but welcome. 
+			- Horizontally spanning the whole available width. **(FILL)**
+		- **Button** displaying the text **"Search!"**.
+			- All applied style is not required by the requirement but welcome.
+			- **On Click** the application shall filter all **stock lists** *(favorite and other | see below)*, only keeping entries that contain the **case-insensitive** text inserted in the text input *(tag: search-input)*. If the input *(tag: search-input)* is empty, **all available stocks** shall be listed. The change shall be immediately reflected in the two lists.
+		- **Text Label** displaying the text **"Sort By"**.
+			- All applied style is not required by the requirement but welcome.
+		- **Drop-Down Menu** | defined as **tag: order-input* | a dropdown menu for sorting options.
+			-  All applied style is not required by the requirement but welcome. 
+			- Displaying the following options:
+				- **Name**: stock name. - *default*
+				- **Price**: stock price.
+				- **Percentage** stock gain/loss percentage ratio between the last 2 **heart-beats**.
+			- When an option is selected in the menu, the change shall be **instantly reflected** in all **stock lists** *(favorite and other | see below)*.
+- **Container - Lists**:
+	- All applied style is not required by the requirement but welcome. 
+	- Horizontally spanning the whole available width. **(FILL)** 
+	- Vertically spanning the whole available height. **(FILL)**
+	- **Scrollable**
+	- **Children** are alligned **vertically** from **top** to **bottom**.
+	- Contains the following **UI Elements**: 
+		- **Container - Favorite**: a list displaying the favorite stocks.
+			- **Background Color**: **Electro-Swing Yellow** *// its 2 AM :C , i.m out of names*
+			- Other applied style is not required by the requirement but welcome. 
+			- Horizontally spanning the whole available width. **(FILL)** 
+			- Vertically spanning the height of the content. **(FIT)**
+			- **Children** are alligned **vertically** from **top** to **bottom**.
+			- Contains the following **UI Elements**: 
+				- All **stocks** *(tag: stock)*  received from the **global service** that are found the favorite list received from the **global service** and pass the search requirements *(tag: search-input)* ordered by requirements *(tag: order-input)*.
+			- The list is regenerated each **heart-beat** or if requested via search, filter *(tag: search-input, tag: order-input)* or by other events.
+		- **Container - NoN-Favorite**: a list displaying the remaining stocks (that are not favorite).
+			- All applied style is not required by the requirement but welcome. 
+			- Horizontally spanning the whole available width. **(FILL)** 
+			- Vertically spanning the height of the content. **(FIT)**
+			- **Children** are alligned **vertically** from **top** to **bottom**.
+			- Contains the following **UI Elements**: 
+				- All **stocks** *(tag: stock)* received from the **global service** that are not found the favorite list received from the **global service** and pass the search requirements *(tag: search-input)* ordered by requirements *(tag: order-input)*.
+			- The list is regenerated each **heart-beat** or if requested via search, filter *(tag: search-input, tag: order-input)* or by other events.
+> *Define* **tag: stock** as:
+- **Container - Stock**: *generated with a stock model (symbol, name, price, percentage)*
+	- All applied style is not required by the requirement but welcome. 
+	- Horizontally spanning the whole available width. **(FILL)** 
+	- Vertically spanning the height of the content. **(FIT)**
+	- **Children** are alligned **horizontally** from **left** to **right**.
+	- Contains the following **UI Elements**: 
+		- **Text Label** displaying the **Symbol** of the stock.
+			- All applied style is not required by the requirement but welcome. 
+		- **Text Label** displaying the **Name** of the stock.
+			- All applied style is not required by the requirement but welcome. 
+		- ** Text Label** displaying the **Price** of the stock followed by the text **" Gems"**.
+			- All applied style is not required by the requirement but welcome. 
+		- **Text Label** displaying the **Percentage** of the stock.
+			- The percentage ratio between the stock price of the last two **heart-beats** *(defined as value)*.
+			- If the value is **greater or equal to 0**, the color of the text should be **Gem Green**, otherwise, the color should be **Financial-Hell Red**.
+			- Other applied style is not required by the requirement but welcome. 
+		- **Image** displaying:
+			- format: `png`, size: `32x32px`
+			- If the stock is listed in the favorite list provided by the **global service**:
+				- Displaying a **Filled Star Shape** in the color **Electro-Swing Yellow**.
+				- **On click** the stock is removed from the **favorite list** and both list containers described above are regenerated. The new **favorite list** is also forwarded to the **global service** to be processed and saved.
+			- Otherwise:
+				- Displaying a **Star Outline** in the color **Electro-Swing Yellow**.
+				- **On click** the stock is added to the **favorite list** and both list containers described above are regenerated. The new **favorite list** is also forwarded to the **global service** to be processed and saved.
 
-# Alert System *- Norbert*
+# History - *Denis*
+An UI page that displays the transaction history of the user related to stock trading.
+### Design:
+The History page will have the following **UI Elements**, displayed vertically from top to bottom:
+ - **Container - Top Bar:**
+	 - Displays the page title and ensures proper alignment with other UI elements.
+	 - Horizontally spanning the whole available width. **(FILL)**
+	 - Vertically spanning the height of the content. **(FIT)**
+	 - Children are aligned horizontally from left to right.
+	 - Children are centered both horizontally and vertically.
+	 - Contains the following **UI elements**:
+		 - **Text Label** displaying the text **"History"**.
+			 - All applied style is not required by the requirement but welcome.
+		 - **Button** displaying the text **"Save As"**.
+			 - On Click, it prompts the user to save the transaction history as a file (e.g., CSV or PDF).
+			 - Horizontally spanning the height of the content. **(FIT)**
+ - **Container - Filters:**
+	- Allows filtering transactions based on stock name, type, and date range.
+	- Horizontally spanning the whole available width. **(FILL)**
+	- Vertically spanning the height of the content. **(FIT)**
+	- Children are aligned horizontally, from left to right.
+	- Contains the following **UI elements**:
+		- **Dropdown Menu** for selecting **Stock Name**.
+		- **Dropdown Menu** for selecting **Transaction Type** (**BUY / SELL / ALL**).
+		- **Date Picker** for selecting a **Start Date - End Date Range**.
+		- **Button** displaying the text **"Apply Filters"**.
+			- Horizontally spanning the height of the content. **(FIT)**
+			- On Click, it applies the selected filters to the transaction list.
+ - **Container - Transactions List**:
+	 - Displays a list of all stock transactions.
+	 - Horizontally spanning the whole available width. **(FILL)**
+	 - Vertically spanning the whole available height. **(FILL)**
+	 - Children are aligned vertically, from top to bottom.
+	 - The list is re-populated every **heart-beat** based on new transactions received from the **Global Service**.
+	 - Contains the following **UI elements**:
+		 - **Container - Transaction Row:**
+			 - Displays transaction details in a row format.
+			 - Horizontally spanning the whole available width. **(FILL)**
+			 - Vertically spanning the height of the content. **(FIT)**
+			 - Children are aligned horizontally, from left to right.
+			 - Contains the following **UI elements**:
+				 - **Text Label** displaying the **Stock Symbol** (e.g., GOOG).
+				 - **Text Label** displaying the **Stock Name** (e.g., Alphabet Inc).
+				 - **Text Label** displaying the **Transaction Type** (**BUY / SELL**).
+					 - BUY transactions should be displayed in **Gem Green**.
+					 - SELL transactions should be displayed in **Financial-Hell Red**.
+				- **Text Label** displaying the **Amount** of stocks transacted.
+				- **Text Label** displaying the **Price per Stock**.
+				- **Text Label** displaying the **Total Value** (Amount × Price per Stock).
+				- **Text Label** displaying the **Timestamp** of the transaction.
+- **Container - Sorting Options**:
+	- Allows sorting transactions based on different criteria.
+	- Horizontally spanning the whole available width. **(FILL)**
+	- Vertically spanning the height of the content. **(FIT)**
+	- Children are aligned horizontally, from left to right.
+	- Contains the following **UI elements**:
+ 		-All applied style is not required by the requirement but welcome.
+		-Displaying the following options:
+		- **Dropdown Menu** for selecting sorting criteria:
+			- **Date (Newest First / Oldest First)**
+			- **Stock Name (A-Z / Z-A)**
+			- **Transaction Value (Highest / Lowest)**
+  		 - When an option is selected in the menu, the change shall be instantly reflected in all stock lists
 
-## Definitions and Short Description  
-**Alert System**: A feature, responsible for managing user-defined alerts for the stock prices    
-**Alert**: A user-defined trigger, which monitors the stock price changes and alerts/notifies the user when conditions are met.   
-**Database Wrapper**: Handles persistent storage and retrieval of alerts  
-**Global Service**: It has a role in integration and communication of the alerts with the backend services
+# Global Service *- Iosua*
+**Stock**:
+- name: `text`
+- symbol: `text`
+- price: `number`
+- percentage: `number` (the percentage ratio between the last two **heart-beats** prices)
 
-## UI Elements
-The **application** will have the following elements related to the **Alert System**:
-- **Alert Button**
-    - Displays on stock items, in the **Stock Page**
-    - Clicking on it, opens up the **Alert Window**
-- **Alert Window**
-    - Popup modal, where the users have the ability to set up an alert relating to the **stock price**.
-    - Elements:
-        - Text Input for **"Up to" Price** (optional)
-        - Text Input for **"Up to" Price** (optional)
-        - **Save Alert** Button to create the alert
-        - **Cancel** Button to close window without any modifications or saving
-- **Stock Page Indicator**
-    - A bell icon; displayed next to stocks with active alerts
-    - Clicking on the bell opens up the **Alert Management Window**
-- **Alert Management Window**
-    - Displays all alerts currently **active** for the **specific stock**
-    - User can **update / delete / deactivate** alerts
-    - Elements:
-        - **Edit** Button, opens the field to modify price range
-        - **Delete** Button, removes the alert
-        - **Deactivate** Button, disables the alert, without deleting it
-- **Notification System**
-    - Using **WinUI 3** notifications, alerts the user when the **set condition** is met for the alert
-    - Display message:
-        - Stock symbol and name
-        - Whether it's **"Up To"** | **"Down To"**
-        - Current stock price (at the time of trigger)
+**Account Stock**:
+- name: `text`
+- symbol: `text`
+- cumulative bought price: `number` (the sum of all the buy price of a bought stock type)
+- amount: `number`
 
-## Alert Data Model  
-The **Alert System** is represented with the following model and properties:
+**History Stock**:
+- type: `BUY | SELL`
+- name: `text`
+- symbol: `text`
+- price: `number`
+- amount: `number`
+- date: `date`
+  
+The **Global Service** ensures seamless integration of parts of the **application**:
+- **State Management**
+	- **The application** shall manage the state of all data in the application. *(Load, Save, Update)*
+		- **The application** shall **load** information about the user,
+		- **The application** shall **store** information about the user: 
+			- **UserID**: |*String*| The ID of the user (request from **other application** - *Andrada's Team*).
+			- **Username**: |*String*| The Username of the user  (request from **other application** - *Andrada's Team*).
+			- **Gems** |*Integer*|: 
+				- First initialization value: **0**
+			- **List of Account Stocks**: A list with all the stocks that the user possesses.
+			- **List of History Stocks**: A list of the transaction history of the user.
+			- **Favorite List**: A list of the names of the stocks the user has added to **favorites**.
+			- **Alerts**: A list of the names of the stocks the user has added to **alerts** along with their **alert bound**. *(upper and lower bound)*
+		- If the information is not stored in the **database** generate it with default values: (**empty**, **0**, **""**)
+		- On each change to the information **the application** shall store it to the **database**.
+	- **Live Stock Value**:
+		- At startup **the application** contains the following **stocks**:
+			- BKNG: Booking Holdings Inc
+			- ORLY: O'Reilly Automotive Inc
+			- MSTR: MicroStrategy
+			- MELI: MercadoLibre Inc
+			- KLAC: KLA Corp
+			- NFLX: Netflix Inc
+			- AXON: Axon Enterprise Inc
+			- CRWD: CrowdStrike Holdings Inc
+			- APP: Applovin Corp
+			- ASML: ASML Holding NV
+			- SNPS: Synopsys Inc
+			- META: Meta Platforms Inc
+			- INTU: Intuit Inc
+			- ADBE: Adobe Inc.
+			- COST: Costco Wholesale Corp
+			- TEAM: Atlassian Corp
+			- MSFT: Microsoft Corp
+			- TSLA: Tesla Inc
+			- IDXX: IDEXX Laboratories Inc
+			- ZS: Zscaler Inc
+			- ISRG: Intuitive Surgical Inc
+			- ADSK: Autodesk Inc
+			- WDAY: Workday Inc
+			- PLTR: Palantir Technologies Inc
+			- CEG: Constellation Energy Corp
+			- ROP: Roper Technologies Inc
+			- CHTR: Charter Communications Inc
+			- NVDA: NVIDIA Corp
+			- PANW: Palo Alto Networks Inc
+			- MU: Micron Technology Inc
+		- Price is **generated randomly** between (100 and 500) at **startup**.
+		- A price history *(not transaction history)* of 900 **heart-beats** is generated on startup for each stock. These will be used by the **Stock Menu** to have a broader history range in the chart. (**hb = heart-beats**, 30 - standard length of the chart, 30 * 1 **hb** = 30 **hb**, 30 * 10 **hb** = 300 **hb**, 30 * 30 **hb** = 900 **hb**)  
+		- On each **heart-beat** the history of prices of all stocks is shifted by one and a new **HEAD** is generated using the following formula:
+		> x = rand(-5, 5)
+		max(5, old_head_price + x)  
+		
+		- If the value **becomes too low** it is **capped** at 5.
+- *Page Change* **request**
+	- The **current page** *(or the navbar)* can request a *page change* to a diffrent page (by id). The old page id should be saved in case the **new page** allows the user to **go back** *(stock page)*. 
+- **Provide Required Data**:
+	- Provide required data to:
+		- **Navbar**: 
+			- Username
+			- Gems
+			- List of Account Stocks
+		- **Portfolio**: 
+			- List of Account Stocks
+			- List of Stocks
+		- **Stock List**:
+			- List of Account Stocks
+			- List of Stocks
+			- List of Favorite Stock Names
+		- **History**:
+			- List of History Stocks
+		- **Gem Store**:
+			- Gems
+			- **On request**:
+				- List of Banking Accounts *(from other application)*
+		- **Alert Window**: 
+			- List of Stocks
+			- List of Alerts *(stock names, bounds)*
+		- **Stock Menu**:
+			- List of Account Stocks
+			- List of List of Stocks *(List of stocks with history)* 
+ - Communication with **Other Applications**:
+	- Andrada's team: 
+		- request available accounts (list) (for buying gems).
+			- returns a list of all available accounts.
+		- request subtraction of funds from X account (where X is provided by the application via the user). *(see store page)*
+			- The request must return the status of the procedure, successful, failed: not enough funds, failed: internal error.
+		- request addition of funds to account X (where X is provided by the application via the user). *(see store page)*
+			- request should return the status of the procedure, successful, failed.
+	- Razvan's team:
+		- send notifications each time a user buys or sells a stock.
+		- notification should contain:
+			- action: `buy/sell`
+			- stock symbol: `text` 
+			- stock name: `text`
+			- buy/sell price: `number`
 
-- **StockSymbol (string)**: identifies the alert with the stock associated with its symbol
-- **AlertUpToPrice (decimal/double, nullable)**: upper price threshold; null if no upper limit is set
-- **AlertDownToPrice (decimal/double, nullable)**: lower price threshold; null if no lower limit is set  
-- **IsActive (boolean)**: indicates if an alert is active; on init it's set to `true`
-- **HasBeenTriggered (boolean)**: indicates whether the alert has been triggered; on init it's set to `false` 
-- **AlertId (GUID)**: identifier for each alert instance
 
-## Alert Creation and Management  
-The **Alert System** allows users to create and manage alerts, communicates using the **AlertsViewModel**, handling the UI interactions
+# Alert System *- Norbert*  
 
-### Alert Creation Logic  
-- The user clicks on the **Alert Button** on the stock item and it opens up the **Alert Window**
-- Inside there, clicking on the **Save Alert** button, the system will:
-    - get user-entered **"Up to"** and **"Down to"** values
-    - validate the input (non-empty values are valid numbers and in correct range)
-    - create a new **Alert** instance, populating it with the correct stock symbol and price thresholds  
-    - set `IsActive = true` and `HasBeenTriggered = false` (default)  
-    - store the alert 
+The **Alert System** allows users to define and manage alerts for stock price changes. 
+The **Alert System** includes the following **UI Elements**, displayed and interacted with as follows:  
 
-### Alert Storage & Retrieval (Database Wrapper)  
-The **Database Wrapper** will manage persistence for alerts. It provides methods for:
-- **SaveAlert(Alert alert)**: storing a new alert  
-- **GetAlertsForStock(string stockSymbol)**: retrieves all alerts for the given stock symbol
-- **GetAllActiveAlerts()**: retrieves all active alerts for monitoring 
-- **UpdateAlert(Alert alert)**: updates existign alert
-- **DeleteAlert(Guid alertId)**: delete alert from the database using it's unique ID
+- **Alert Window**  
+  - A popup modal where users can configure alerts for a stock’s price.  
+  - **Children** are aligned **vertically**, from **top** to **bottom**.  
+  - Contains the following **UI Elements**:
+    - **Text Label** displaying the text **"Up To"**.
+      - All applied style is not required by the requirement but welcome.
+    - **Text Input** (tag: up-to-inpit)  
+      - All applied style is not required by the requirement but welcome.
+    - **Text Label** displaying the text **"Down To"**.
+      - All applied style is not required by the requirement but welcome.
+    - **Text Input** (tag: down-to-inpit)  
+      - All applied style is not required by the requirement but welcome.
+    - **Button** displays the text "Save Alert"
+      - All applied style is not required by the requirement but welcome.
+      - **On Click** validate the input: 
+        - If the input is not valid (0 < lower bound < upper bound, numbers) show error popup.
+        - Otherwise save alert in **Global Service**
+    - **Button** displays the text "Cancel"
+      - All applied style is not required by the requirement but welcome.
+      - **On Click** revert back to Stock Menu. 
 
-### Monitoring Logic  
-- Using the **heart-beat**/s aspect of the **Global Service**, it periodically syncs to fetch stock prices 
-- For each **active alert**, checks if:
-    - **AlertUpToPrice** is set and the current stock price meets / exceeds it  
-    - **AlertDownToPrice** is set and the current stock price meets / falls below it  
-    - if triggered, sets `HasBeenTriggered = true`, sends a notification, and updates the database  
+- **Notification System**  
+  - Displays notifications when an alert’s condition is met.  
+  - **Uses WinUI 3 notifications** for desktop alerts.  
+  - Contains the following **UI Elements**:  
+    - **Text Label** displaying the **Stock Symbol** and **Name**.  
+    - **Text Label** indicating whether the alert was **"Up To"** or **"Down To"**.  
+    - **Text Label** displaying the **current stock price** at the time of the trigger.  
 
+### **Alert Behavior & Logic**  
+
+### **Alert Creation**  
+1. The user clicks the **Alert Button** on a stock item.  
+2. The **Alert Window** opens, allowing the user to enter **"Up To"** and **"Down To"** prices.  
+3. Clicking **Save Alert**:  
+   - Validates input (ensuring values are valid numbers in range).  
+   - Creates a new **Alert** associated with the stock.  
+   - Initializes `IsActive = true` and `HasBeenTriggered = false`.  
+   - Stores the alert.  
+
+### **Alert Monitoring**  
+- The **Global Service** periodically updates stock prices.  
+- For each **active alert**, it checks if:  
+  - The current stock price **exceeds** the **AlertUpToPrice**.  
+  - The current stock price **falls below** the **AlertDownToPrice**.  
+- If an alert is triggered:  
+  - `HasBeenTriggered` is set to `true`.  
+  - A notification is displayed.  
+  - The alert remains active unless manually **deleted** or **deactivated**.  
