@@ -243,3 +243,64 @@ The **Portfolio** contains the following **UI Elements**, displayed **vertically
 			- Otherwise:
 				- Displaying a **Star Outline** in the color **Electro-Swing Yellow**.
 				- **On click** the stock is added to the **favorite list** and both list containers described above are regenerated. The new **favorite list** is also forwarded to the **global service** to be processed and saved.
+
+# History - *Denis*
+An UI page that displays the transaction history of the user related to stock trading.
+### Design:
+The History page will have the following **UI Elements**, displayed vertically from top to bottom:
+ - **Container - Top Bar:**
+	 - Displays the page title and ensures proper alignment with other UI elements.
+	 - Horizontally spanning the whole available width. **(FILL)**
+	 - Vertically spanning the height of the content. **(FIT)**
+	 - Children are aligned horizontally from left to right.
+	 - Children are centered both horizontally and vertically.
+	 - Contains the following **UI elements**:
+		 - **Text Label** displaying the text **"History"**.
+			 - All applied style is not required by the requirement but welcome.
+		 - **Button** displaying the text **"Save As"**.
+			 - On Click, it prompts the user to save the transaction history as a file (e.g., CSV or PDF).
+			 - Horizontally spanning the height of the content. **(FIT)**
+ - **Container - Filters:**
+	- Allows filtering transactions based on stock name, type, and date range.
+	- Horizontally spanning the whole available width. **(FILL)**
+	- Vertically spanning the height of the content. **(FIT)**
+	- Children are aligned horizontally, from left to right.
+	- Contains the following **UI elements**:
+		- **Dropdown Menu** for selecting **Stock Name**.
+		- **Dropdown Menu** for selecting **Transaction Type** (**BUY / SELL / ALL**).
+		- **Date Picker** for selecting a **Start Date - End Date Range**.
+		- **Button** displaying the text **"Apply Filters"**.
+			- Horizontally spanning the height of the content. **(FIT)**
+			- On Click, it applies the selected filters to the transaction list.
+ - **Container - Transactions List**:
+	 - Displays a list of all stock transactions.
+	 - Horizontally spanning the whole available width. **(FILL)**
+	 - Vertically spanning the whole available height. **(FILL)**
+	 - Children are aligned vertically, from top to bottom.
+	 - The list is re-populated every **heart-beat** based on new transactions received from the **Global Service**.
+	 - Contains the following **UI elements**:
+		 - **Container - Transaction Row:**
+			 - Displays transaction details in a row format.
+			 - Horizontally spanning the whole available width. **(FILL)**
+			 - Vertically spanning the height of the content. **(FIT)**
+			 - Children are aligned horizontally, from left to right.
+			 - Contains the following **UI elements**:
+				 - **Text Label** displaying the **Stock Symbol** (e.g., GOOG).
+				 - **Text Label** displaying the **Stock Name** (e.g., Alphabet Inc).
+				 - **Text Label** displaying the **Transaction Type** (**BUY / SELL**).
+					 - BUY transactions should be displayed in **Gem Green**.
+					 - SELL transactions should be displayed in **Financial-Hell Red**.
+				- **Text Label** displaying the **Amount** of stocks transacted.
+				- **Text Label** displaying the **Price per Stock**.
+				- **Text Label** displaying the **Total Value** (Amount × Price per Stock).
+				- **Text Label** displaying the **Timestamp** of the transaction.
+- **Container - Sorting Options**:
+	- Allows sorting transactions based on different criteria.
+	- Horizontally spanning the whole available width. **(FILL)**
+	- Vertically spanning the height of the content. **(FIT)**
+	- Children are aligned horizontally, from left to right.
+	- Contains the following **UI elements**:
+		- **Dropdown Menu** for selecting sorting criteria:
+			- **Date (Newest First / Oldest First)**
+			- **Stock Name (A-Z / Z-A)**
+			- **Transaction Value (Highest / Lowest)**
