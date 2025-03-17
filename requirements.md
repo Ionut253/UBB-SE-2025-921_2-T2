@@ -543,4 +543,73 @@ The **Stock Menu** contains the following **UI Elements**, displayed **verticall
 			- All applied style is not required by the requirement but welcome.
 			- **On Click** if:
 				- Stock is **not on the favorite list**, request from **global service** to add stock to favorite list.
-				- Otherwise, request frim **global service** to remove stock from favorite list.
+				- Otherwise, request from **global service** to remove stock from favorite list.
+
+# Gem Store *- Ana* (🧢)
+The **Gem Store** allows the user to buy/sell gems for normal currency.  
+The **Gem Store** contains the following **UI Elements**, displayed **vertically** from **top** to **bottom** in the following order:
+- **Container - All Deals**: 
+	- All applied style is not required by the requirement but welcome. 
+	- Horizontally spanning the whole available width. **(FILL)** 
+	- Vertically spanning the whole available height. **(FILL)**
+	- **Children** are alligned **vertically** from **top** to **bottom**.
+	- **Scrollable**
+	- Contains the following **UI Elements**:
+		- gem_deal("LEGENDARY DEALLLL!!!!", 4999, 100.0)
+		- gem_deal("MYTHIC DEAL!!!!", 3999, 90.0)
+		- gem_deal("INSANE DEALLL!!!!", 3499, 85.0)
+		- gem_deal("GIGA DEAL!!!!", 3249, 82.0)
+		- gem_deal("WOW DEAL!!!!", 3000, 80.0)
+		- gem_deal("YAY DEAL!!!!", 2500, 50.0)
+		- gem_deal("YUPY DEAL!!!!", 2000, 49.0)
+		- gem_deal("HELL NAH DEAL!!!", 1999, 48)
+		- gem_deal("BAD DEAL!!!!", 1000, 45.0)
+		- gem_deal("MEGA BAD DEAL!!!!", 500, 40.0)
+		- gem_deal("LEGENDARY BAD DEAL!!!!", 1, 35.0)
+- **Container - Sell**:
+	- All applied style is not required by the requirement but welcome. 
+	- Horizontally spanning the whole available width. **(FILL)** 
+	- Vertically spanning the height of the content. **(FIT)**
+	- **Children** are alligned **horizontally** from **left** to **right**.
+	- Contains the following **UI Elements**:
+		- **Container - Title-Value-Price**:
+			- All applied style is not required by the requirement but welcome. 
+			- Horizontally spanning the width of the content. **(FIT)** 
+			- Vertically spanning the whole available height. **(FILL)**
+			- **Children** are alligned **vertically** from **top** to **bottom**.
+			- Contains the following **UI Elements**:
+				- **Text Label**: displays the text **"100 Gem"**.
+					- All applied style is not required by the requirement but welcome.
+				- **Text Label**: displays the text **"1 €"**.
+					- All applied style is not required by the requirement but welcome.
+		- **Number Input** |define *tag: quantity-inp*| quantity to sell
+			-  All applied style is not required by the requirement but welcome.
+			- Default Value: **0**
+		- **Button** displaying the text **"Sell!"**
+			-  All applied style is not required by the requirement but welcome.
+			- **On Click** validate if value of (*tag: quantity-inp*) is > 0 and if user has enought funds:	
+				- If valid the **accout selector window pops up**.
+				- Otherwise: Display popup Error.
+> Below I've defined a set of macros for easy repeatability
+> Define MACRO: tag gem_deal(title: string, gem_value: integer, euro_price: float);
+- **Container - Deal**:
+	- All applied style is not required by the requirement but welcome. 
+	- Horizontally spanning the whole available width. **(FILL)** 
+	- Vertically spanning the height of the content. **(FIT)**
+	- **Children** are alligned **horizontally** from **left** to **right**.
+	- Contains the following **UI Elements**:
+		- **Container - Title-Value-Price**:
+			- All applied style is not required by the requirement but welcome. 
+			- Horizontally spanning the width of the content. **(FIT)** 
+			- Vertically spanning the whole available height. **(FILL)**
+			- **Children** are alligned **vertically** from **top** to **bottom**.
+			- Contains the following **UI Elements**:
+				- **Text Label**: displays the **title**.
+					- All applied style is not required by the requirement but welcome. 
+				- **Text Label**: displays the **gem_value** followed by the text **" Gems"**.
+					- All applied style is not required by the requirement but welcome. 
+				- **Text Label**: displays the **euro_price** followed by the text **"€"**.
+					- All applied style is not required by the requirement but welcome. 
+		-	**Button** displaying the text **"Buy!"**.
+			- All applied style is not required by the requirement but welcome. 
+			-	**On Click** the **accout selector window pops up**.
