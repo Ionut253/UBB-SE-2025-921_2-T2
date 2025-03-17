@@ -243,3 +243,122 @@ The **Portfolio** contains the following **UI Elements**, displayed **vertically
 			- Otherwise:
 				- Displaying a **Star Outline** in the color **Electro-Swing Yellow**.
 				- **On click** the stock is added to the **favorite list** and both list containers described above are regenerated. The new **favorite list** is also forwarded to the **global service** to be processed and saved.
+
+
+# Global Service *- Iosua*
+**Stock**:
+- name: `text`
+- symbol: `text`
+- price: `number`
+- percentage: `number` (the percentage ratio between the last two **heart-beats** prices)
+
+**Account Stock**:
+- name: `text`
+- symbol: `text`
+- cumulative bought price: `number` (the sum of all the buy price of a bought stock type)
+- amount: `number`
+
+**History Stock**:
+- type: `BUY | SELL`
+- name: `text`
+- symbol: `text`
+- price: `number`
+- amount: `number`
+- date: `date`
+  
+The **Global Service** ensures seamless integration of parts of the **application**:
+- **State Management**
+	- **The application** shall manage the state of all data in the application. *(Load, Save, Update)*
+		- **The application** shall **load** information about the user,
+		- **The application** shall **store** information about the user: 
+			- **UserID**: |*String*| The ID of the user (request from **other application** - *Andrada's Team*).
+			- **Username**: |*String*| The Username of the user  (request from **other application** - *Andrada's Team*).
+			- **Gems** |*Integer*|: 
+				- First initialization value: **0**
+			- **List of Account Stocks**: A list with all the stocks that the user possesses.
+			- **List of History Stocks**: A list of the transaction history of the user.
+			- **Favorite List**: A list of the names of the stocks the user has added to **favorites**.
+			- **Alerts**: A list of the names of the stocks the user has added to **alerts** along with their **alert bound**. *(upper and lower bound)*
+		- If the information is not stored in the **database** generate it with default values: (**empty**, **0**, **""**)
+		- On each change to the information **the application** shall store it to the **database**.
+	- **Live Stock Value**:
+		- At startup **the application** contains the following **stocks**:
+			- BKNG: Booking Holdings Inc
+			- ORLY: O'Reilly Automotive Inc
+			- MSTR: MicroStrategy
+			- MELI: MercadoLibre Inc
+			- KLAC: KLA Corp
+			- NFLX: Netflix Inc
+			- AXON: Axon Enterprise Inc
+			- CRWD: CrowdStrike Holdings Inc
+			- APP: Applovin Corp
+			- ASML: ASML Holding NV
+			- SNPS: Synopsys Inc
+			- META: Meta Platforms Inc
+			- INTU: Intuit Inc
+			- ADBE: Adobe Inc.
+			- COST: Costco Wholesale Corp
+			- TEAM: Atlassian Corp
+			- MSFT: Microsoft Corp
+			- TSLA: Tesla Inc
+			- IDXX: IDEXX Laboratories Inc
+			- ZS: Zscaler Inc
+			- ISRG: Intuitive Surgical Inc
+			- ADSK: Autodesk Inc
+			- WDAY: Workday Inc
+			- PLTR: Palantir Technologies Inc
+			- CEG: Constellation Energy Corp
+			- ROP: Roper Technologies Inc
+			- CHTR: Charter Communications Inc
+			- NVDA: NVIDIA Corp
+			- PANW: Palo Alto Networks Inc
+			- MU: Micron Technology Inc
+		- Price is **generated randomly** between (100 and 500) at **startup**.
+		- A price history *(not transaction history)* of 900 **heart-beats** is generated on startup for each stock. These will be used by the **Stock Menu** to have a broader history range in the chart. (**hb = heart-beats**, 30 - standard length of the chart, 30 * 1 **hb** = 30 **hb**, 30 * 10 **hb** = 300 **hb**, 30 * 30 **hb** = 900 **hb**)  
+		- On each **heart-beat** the history of prices of all stocks is shifted by one and a new **HEAD** is generated using the following formula:
+		> x = rand(-5, 5)
+		max(5, old_head_price + x)  
+		
+		- If the value **becomes too low** it is **capped** at 5.
+- *Page Change* **request**
+	- The **current page** *(or the navbar)* can request a *page change* to a diffrent page (by id). The old page id should be saved in case the **new page** allows the user to **go back** *(stock page)*. 
+- **Provide Required Data**:
+	- Provide required data to:
+		- **Navbar**: 
+			- Username
+			- Gems
+			- List of Account Stocks
+		- **Portfolio**: 
+			- List of Account Stocks
+			- List of Stocks
+		- **Stock List**:
+			- List of Account Stocks
+			- List of Stocks
+			- List of Favorite Stock Names
+		- **History**:
+			- List of History Stocks
+		- **Gem Store**:
+			- Gems
+			- **On request**:
+				- List of Banking Accounts *(from other application)*
+		- **Alert Window**: 
+			- List of Stocks
+			- List of Alerts *(stock names, bounds)*
+		- **Stock Menu**:
+			- List of Account Stocks
+			- List of List of Stocks *(List of stocks with history)* 
+ - Communication with **Other Applications**:
+	- Andrada's team: 
+		- request available accounts (list) (for buying gems).
+			- returns a list of all available accounts.
+		- request subtraction of funds from X account (where X is provided by the application via the user). *(see store page)*
+			- The request must return the status of the procedure, successful, failed: not enough funds, failed: internal error.
+		- request addition of funds to account X (where X is provided by the application via the user). *(see store page)*
+			- request should return the status of the procedure, successful, failed.
+	- Razvan's team:
+		- send notifications each time a user buys or sells a stock.
+		- notification should contain:
+			- action: `buy/sell`
+			- stock symbol: `text` 
+			- stock name: `text`
+			- buy/sell price: `number`
