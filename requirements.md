@@ -87,7 +87,7 @@ The navbar will have the following **UI Elements**, displayed **vertically** fro
      		- **Text Label** displaying the user's **username**
 			- All applied style is not required by the requirement but welcome.
 
- # Portfolio *- Bianca*
+# Portfolio *- Bianca*
 The **Portfolio** shows information related to the current value of all stocks possessed by the user, alongside a list of those stocks.  
 The **Portfolio** contains the following **UI Elements**, displayed **vertically** from top to bottom in the following order:
 - **Container - Top Bar**: 
@@ -169,7 +169,7 @@ The **Portfolio** contains the following **UI Elements**, displayed **vertically
 					- All applied style is not required by the requirement but welcome.  
 				- **Button** displaying the text **"Open"**.
 					- **On Click** the button will request from the **global service** *page change* to the **Stock Menu** for the **stock** in cause.
-
+  
 # Stock List *- Riccardo*
 The **Stock List** displays a list of all available stocks received from the **global service**.  
 The **Portfolio** contains the following **UI Elements**, displayed **vertically** from **top** to **bottom** in the following order:
@@ -425,3 +425,59 @@ The **Global Service** ensures seamless integration of parts of the **applicatio
 			- stock symbol: `text` 
 			- stock name: `text`
 			- buy/sell price: `number`
+
+
+# Alert System *- Norbert*  
+
+The **Alert System** allows users to define and manage alerts for stock price changes. 
+The **Alert System** includes the following **UI Elements**, displayed and interacted with as follows:  
+
+- **Alert Window**  
+  - A popup modal where users can configure alerts for a stock’s price.  
+  - **Children** are aligned **vertically**, from **top** to **bottom**.  
+  - Contains the following **UI Elements**:
+    - **Text Label** displaying the text **"Up To"**.
+      - All applied style is not required by the requirement but welcome.
+    - **Text Input** (tag: up-to-inpit)  
+      - All applied style is not required by the requirement but welcome.
+    - **Text Label** displaying the text **"Down To"**.
+      - All applied style is not required by the requirement but welcome.
+    - **Text Input** (tag: down-to-inpit)  
+      - All applied style is not required by the requirement but welcome.
+    - **Button** displays the text "Save Alert"
+      - All applied style is not required by the requirement but welcome.
+      - **On Click** validate the input: 
+        - If the input is not valid (0 < lower bound < upper bound, numbers) show error popup.
+        - Otherwise save alert in **Global Service**
+    - **Button** displays the text "Cancel"
+      - All applied style is not required by the requirement but welcome.
+      - **On Click** revert back to Stock Menu. 
+
+- **Notification System**  
+  - Displays notifications when an alert’s condition is met.  
+  - **Uses WinUI 3 notifications** for desktop alerts.  
+  - Contains the following **UI Elements**:  
+    - **Text Label** displaying the **Stock Symbol** and **Name**.  
+    - **Text Label** indicating whether the alert was **"Up To"** or **"Down To"**.  
+    - **Text Label** displaying the **current stock price** at the time of the trigger.  
+
+### **Alert Behavior & Logic**  
+
+### **Alert Creation**  
+1. The user clicks the **Alert Button** on a stock item.  
+2. The **Alert Window** opens, allowing the user to enter **"Up To"** and **"Down To"** prices.  
+3. Clicking **Save Alert**:  
+   - Validates input (ensuring values are valid numbers in range).  
+   - Creates a new **Alert** associated with the stock.  
+   - Initializes `IsActive = true` and `HasBeenTriggered = false`.  
+   - Stores the alert.  
+
+### **Alert Monitoring**  
+- The **Global Service** periodically updates stock prices.  
+- For each **active alert**, it checks if:  
+  - The current stock price **exceeds** the **AlertUpToPrice**.  
+  - The current stock price **falls below** the **AlertDownToPrice**.  
+- If an alert is triggered:  
+  - `HasBeenTriggered` is set to `true`.  
+  - A notification is displayed.  
+  - The alert remains active unless manually **deleted** or **deactivated**.  
