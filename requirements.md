@@ -300,7 +300,10 @@ The History page will have the following **UI Elements**, displayed vertically f
 	- Vertically spanning the height of the content. **(FIT)**
 	- Children are aligned horizontally, from left to right.
 	- Contains the following **UI elements**:
+ 		-All applied style is not required by the requirement but welcome.
+		-Displaying the following options:
 		- **Dropdown Menu** for selecting sorting criteria:
 			- **Date (Newest First / Oldest First)**
 			- **Stock Name (A-Z / Z-A)**
 			- **Transaction Value (Highest / Lowest)**
+  		 - When an option is selected in the menu, the change shall be instantly reflected in all stock lists
