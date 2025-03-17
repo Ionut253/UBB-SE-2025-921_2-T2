@@ -613,3 +613,31 @@ The **Gem Store** contains the following **UI Elements**, displayed **vertically
 		-	**Button** displaying the text **"Buy!"**.
 			- All applied style is not required by the requirement but welcome. 
 			-	**On Click** the **accout selector window pops up**.
+
+# Account Selection Window *- Iosua*
+The **Account Selection Window** allows the user to select which account to use for transactions.
+The **Account Selection Window** contains the following **UI Elements**, displayed **vertically** from **top** to **bottom** in the following order:
+- **Container - Main**: 
+	- All applied style is not required by the requirement but welcome. 
+	- Horizontally spanning the whole available width. **(FILL)** 
+	- Vertically spanning the whole available height. **(FILL)**
+	- **Children** are alligned **vertically** from **top** to **bottom**.
+	- **Scrollable**
+	- Contains the following **UI Elements**:
+		- **Button** displaying the text **"Cancel"**.
+			- All applied style is not required by the requirement but welcome. 
+			- **On Click** the popup responds to the **global service** with **null**
+		- **Container - Account**:
+			- An instance for each account in the **account list** received from the **global service**. *(account-name: `text`, account-balance: `float`)
+			- All applied style is not required by the requirement but welcome. 
+			- Horizontally spanning the whole available width. **(FILL)** 
+			- Vertically spanning the height of the content. **(FIT)**
+			- **Children** are alligned **horizontally** from **left** to **right**.
+			- Contains the following **UI Elements**:
+				- **Text Label**: displaying the **account-name**.
+					- All applied style is not required by the requirement but welcome. 
+				- **Text Label**: displaying the **account-ballance** and the text **" €"**.
+					- All applied style is not required by the requirement but welcome. 
+				- **Button** displaying the text **"Choose"**.
+					- All applied style is not required by the requirement but welcome. 
+					- **On Click** the popup responds to the **global service** with the **account-name**.		
