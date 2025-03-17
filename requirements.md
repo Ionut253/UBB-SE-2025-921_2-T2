@@ -480,4 +480,67 @@ The **Alert System** includes the following **UI Elements**, displayed and inter
 - If an alert is triggered:  
   - `HasBeenTriggered` is set to `true`.  
   - A notification is displayed.  
-  - The alert remains active unless manually **deleted** or **deactivated**.  
+  - The alert remains active unless manually **deleted** or **deactivated**.
+  - 
+
+# Stock Menu *- Rafa* (🧢)
+The **Stock Menu** shows information related to a selected Stock.  
+The **Stock Menu** contains the following **UI Elements**, displayed **vertically** from **top** to **bottom** in the following order:
+- **Container - Top Bar**: 
+	- All applied style is not required by the requirement but welcome. 
+	- Horizontally spanning the whole available width. **(FILL)** 
+	- Vertically spanning the height of the content. **(FIT)**
+	- **Children** are alligned **horizontally** from **left** to **right**.
+	- Contains the following **UI Elements**:
+		- **Text Label** displaying the **symbol of the stock**.
+			- All applied style is not required by the requirement but welcome.
+		- **Text Label** displaying the **name of the stock**.
+			- All applied style is not required by the requirement but welcome.
+		- **Text Label** displaying the text **"Gems: "** and **the amount of gems the user posseses**.
+			- All applied style is not required by the requirement but welcome.
+			- After each buy/sell the value will be refreshed.
+		- **Button** displaying the text **"Exit"**
+			- All applied style is not required by the requirement but welcome.
+			- **On Click** reverts back to the page that launched the menu. (via the **global service**)
+- **Chart**:
+	-  All applied style is not required by the requirement but welcome. 
+	- Horizontally spanning the whole available width. **(FILL)** 
+	- Vertically spanning the  whole available height. **(FILL)**
+	- **Using the livechart2 winui3 library**.
+	- Update the Graph on each **heart-beat** to reflect the new values added to the **stock value history**.
+- **Container - Bottom Bar**: 
+	- All applied style is not required by the requirement but welcome. 
+	- Horizontally spanning the whole available width. **(FILL)** 
+	- Vertically spanning the height of the content. **(FIT)**
+	- **Children** are alligned **horizontally** from **left** to **right**.
+	- Contains the following **UI Elements**:
+		- **Text Label** displaying the text **"Current Value: "** and the **current value** of the stock.
+			- All applied style is not required by the requirement but welcome.
+			- the value will be updated on each **heart-beat**.
+		- **Text Label** displaying the text **"You own: "** and the **quantity** of he stock **owned** by the user.
+			- All applied style is not required by the requirement but welcome.
+			- The value shall refresh on each buy/sell to reflect the new value.
+		- **Text Label** displaying the text **"Select Quantity:  "**.
+			- All applied style is not required by the requirement but welcome.
+		- **Number Input**:
+			- All applied style is not required by the requirement but welcome.
+			- Selecting the quantity of stocks to buy/sell.
+			- Default value: 0
+		- **Button** displaying the text **"Buy!"**:
+			- All applied style is not required by the requirement but welcome.
+			- **On Click** validate if the user can afford the quantity * price:
+				- If user can not afford: Show error popup.
+				- Otherwise request **buying stock** from **global service** and refresh all the elements specified above.
+		- **Button** displaying the text **"Sell!"**:
+			- All applied style is not required by the requirement but welcome.
+			- **On Click** validate if the user has the quantity of stock selected:
+				- If user does not have enough stocks: Show error popup.
+				- Otherwise request **selling stock** from **global service** and refresh all the elements specified above.
+		- **Button** dispalying text **"Set Allert"**:
+			- All applied style is not required by the requirement but welcome.
+			- **On Click** request **global service** to open **Alert Window** for the stock.
+		- **Toggle Button** dispalying text **"Favorite"**:
+			- All applied style is not required by the requirement but welcome.
+			- **On Click** if:
+				- Stock is **not on the favorite list**, request from **global service** to add stock to favorite list.
+				- Otherwise, request frim **global service** to remove stock from favorite list.
