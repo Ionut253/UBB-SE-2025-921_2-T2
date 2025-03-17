@@ -641,3 +641,10 @@ The **Account Selection Window** contains the following **UI Elements**, display
 				- **Button** displaying the text **"Choose"**.
 					- All applied style is not required by the requirement but welcome. 
 					- **On Click** the popup responds to the **global service** with the **account-name**.		
+
+
+
+
+# Database Wrapper *- Ionut*
+The **Database Wrapper** allows **the application** to store and load data **persistenlty**.
+- The database wrapper exposes an api to the **Global Service** for managing data.
